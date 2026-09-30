@@ -186,3 +186,7 @@ source changes during generation discard the generated result.
 - **A feature silently does nothing**: check whether its section above lists required environment
   variables — every AI/embedding/ingestion feature is designed to no-op or fall back rather than
   error when unconfigured.
+
+## License
+
+[MIT](LICENSE)

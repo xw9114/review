@@ -33,7 +33,8 @@ for verification, backup, deployment and rollback details.
 - Local/runtime orchestration: Docker Compose
 
 See `docs/architecture.md`, `docs/database-schema.md`, `docs/api-design.md`, and
-`docs/development-roadmap.md` for the detailed contracts.
+`docs/development-roadmap.md` for the detailed contracts, and `docs/deployment.md` for the VPS
+release, rollback, backup, and monitoring runbook.
 
 ## Start with Docker
 

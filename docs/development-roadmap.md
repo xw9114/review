@@ -50,5 +50,18 @@ the model, mirroring how AI knowledge drafts are generated and reviewed.
 
 ## Phase 6 — notification and deployment hardening
 
-- OpenClaw adapter and idempotent notification logs
-- Reverse proxy, TLS, backups, observability, and VPS deployment runbook
+- Reverse proxy and TLS — already satisfied by host-level infrastructure outside this repo
+  (Cloudflare Tunnel terminates TLS and routes `review.xw9114.online` to the `gateway` container;
+  see `docs/deployment.md`), not something this project needed to build.
+- Backups — implemented: `deploy/backup-postgres.sh` runs daily via host cron, independent of
+  releases, with gzip integrity checks and 14-day retention.
+- Observability — host-level monitoring already exists (Nezha dashboard); `docs/deployment.md`
+  documents adding an HTTP(S) probe for `/healthz` there instead of standing up a second stack.
+- VPS deployment runbook — implemented: `docs/deployment.md` consolidates the release, rollback,
+  backup/restore, and monitoring procedures previously scattered across per-release notes.
+- OpenClaw adapter and idempotent notification logs — **blocked**: no chat channel is connected
+  yet on the OpenClaw instance running on the VPS (needs a one-time, credential-bearing setup step
+  the account owner has to run directly, `openclaw channels add`). The integration shape is
+  decided (OpenClaw polls `GET /api/v1/reviews/overview` on a schedule and delivers a deterministic
+  digest — no code in this repo calls out to OpenClaw, so no notification-log table was needed).
+  The ready-to-run automation command is recorded in `docs/deployment.md` for once a channel exists.

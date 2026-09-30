@@ -10,16 +10,19 @@ review scheduling, and notifications.
 
 ```text
 Browser
-  -> Next.js frontend on the user's VPS
-  -> HTTPS /api requests
-  -> FastAPI backend on the user's VPS
-  -> PostgreSQL (private Docker network)
+  -> Cloudflare edge (TLS termination, host-level, shared across other projects on the VPS)
+  -> cloudflared tunnel -> gateway (nginx, Basic Auth, 127.0.0.1-only)
+  -> Next.js frontend / FastAPI backend (not published to the host)
+  -> PostgreSQL (private Docker network, not published to the host)
   -> RSSHub (optional, private Docker network)
   -> Crawl4AI (optional, private Docker network, single concurrency)
 ```
 
-Only the frontend and API ports are exposed. PostgreSQL is never exposed publicly. TLS and
-domain routing will be handled by a reverse proxy during the VPS deployment phase.
+Only `gateway` is published, and only on `127.0.0.1` — it is reachable solely through the
+Cloudflare tunnel, never directly from the public internet. PostgreSQL, the backend, and the
+frontend are never exposed. TLS and domain routing are handled by host-level infrastructure
+outside this repo; see `docs/deployment.md` for the concrete topology and release/rollback/backup
+procedures.
 
 ## Application boundaries
 

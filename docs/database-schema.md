@@ -76,6 +76,31 @@ Progress is keyed by knowledge point and stores its quiz hash, L1–L5 level, re
 last-review timestamp and next due timestamp. Progress cascades on knowledge deletion. A quiz
 hash mismatch treats the point as newly due. Same-question retries do not increment counts.
 
-Future migrations may add source versions/chunks, multi-user schedules, error analyses and
-notification logs. Question content currently lives in the knowledge JSON plus review snapshots,
-not a separate question bank.
+Migration `20260930_0008` adds three deterministic counters to `review_progress`:
+`again_streak` (consecutive "again" ratings, reset by any other rating), `total_again`, and
+`total_hard` (lifetime counts). They are plain integers updated in the same transaction as the
+existing level/due-date scheduling — no model call — and are the sole input to Phase 5's
+weak-point detection.
+
+### error_analyses / question_variants
+
+Migration `20260930_0008` also adds the Phase 5 analysis tables. Both are populated only through
+an explicit, user-triggered generation call — never automatically and never while practicing.
+
+`error_analyses` holds at most one current row per knowledge point (`knowledge_point_id` is
+unique). Regenerating overwrites the existing row rather than accumulating history. It stores the
+model-classified `error_type` (a fixed enum: `concept_confusion`, `incomplete_recall`,
+`terminology_mixup`, `slip`, `other`), a short Chinese `explanation` and `suggestion`, the
+`input_snapshot` (the wrong-answer question/standard-answer/user-answer rows the model saw, for
+audit), and the generating model/prompt version.
+
+`question_variants` holds every generated candidate question, `status` `pending`, `approved`, or
+`rejected`. Regenerating deletes only the still-`pending` rows for that point; approved/rejected
+rows are kept as history. Approving a variant appends its `{question, answer}` pair into the
+knowledge point's existing `quiz_items` JSON column — the same field draft approval already
+writes — which naturally changes the point's quiz hash and makes the existing review scheduler
+treat it as newly due, with no separate invalidation logic required.
+
+Future migrations may add source versions/chunks, multi-user schedules, and notification logs.
+Question content currently lives in the knowledge JSON plus review snapshots, not a separate
+question bank.

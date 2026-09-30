@@ -238,3 +238,46 @@ export type SourceScoreBatchResult = {
   passed: number;
   threshold: number;
 };
+
+export type ErrorType = "concept_confusion" | "incomplete_recall" | "terminology_mixup" | "slip" | "other";
+export type VariantStatus = "pending" | "approved" | "rejected";
+
+export type WeakPoint = {
+  knowledge_point_id: number;
+  name: string;
+  topic_id: number;
+  topic_name: string;
+  level: number;
+  again_streak: number;
+  total_again: number;
+  review_count: number;
+  due_at: string | null;
+};
+
+export type AnalysisOverview = {
+  mastery_distribution: Record<string, number>;
+  weak_points: WeakPoint[];
+  error_type_distribution: Record<string, number>;
+  tips: string[];
+};
+
+export type ErrorAnalysis = {
+  id: number;
+  knowledge_point_id: number;
+  point_name: string;
+  topic_name: string;
+  error_type: ErrorType;
+  explanation: string;
+  suggestion: string;
+  model: string;
+  generated_at: string;
+};
+
+export type QuestionVariant = {
+  id: number;
+  knowledge_point_id: number;
+  question: string;
+  answer: string;
+  status: VariantStatus;
+  generated_at: string;
+};

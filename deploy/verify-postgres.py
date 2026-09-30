@@ -34,9 +34,10 @@ try:
 
     from app.db.database import SessionLocal, engine as app_engine
     from app.models import Category, Topic, SourceDocument
-    from app.schemas.knowledge_draft import DraftContent, KnowledgeDraftReview
+    from app.schemas.analysis import ErrorAnalysisContent, QuestionVariantsContent
+    from app.schemas.knowledge_draft import DraftContent, KnowledgeDraftReview, QuizItem
     from app.schemas.review import ReviewStart, ReviewAnswer
-    from app.services import knowledge_drafts as drafts, knowledge_structure, reviews
+    from app.services import analysis, knowledge_drafts as drafts, knowledge_structure, reviews
 
     class FixtureLlm:
         model_name = "isolated-release-verification"
@@ -45,6 +46,15 @@ try:
             return DraftContent(title="Verification knowledge", summary="A local test summary.",
                                 difficulty="beginner", key_points=["A test point"],
                                 quiz_items=[{"question": "Test question?", "answer": "Test answer."}])
+
+        def classify_error(self, **_):
+            return ErrorAnalysisContent(error_type="concept_confusion", explanation="Verification explanation.",
+                                        suggestion="Verification suggestion.")
+
+        def generate_question_variants(self, *, count, **_):
+            return QuestionVariantsContent(variants=[
+                QuizItem(question=f"Variant question {i}?", answer=f"Variant answer {i}.") for i in range(count)
+            ])
 
     with SessionLocal() as db:
         category = Category(name="Verification", slug="verification", sort_order=0)
@@ -89,6 +99,21 @@ try:
         assert stats.due_count == 0 and stats.reviewed_today == 1
         assert stats.points[0].knowledge_point_id == point_id and stats.points[0].review_count == 1
         assert stats.recent_sessions[0].question_count == 1
+        weak_overview = analysis.overview(db)
+        assert weak_overview.mastery_distribution.get("2") == 1  # single "good" rating advances L1 -> L2
+        wrong_session = reviews.start_session(db, ReviewStart(knowledge_point_id=point_id))
+        reviews.reveal(db, wrong_session.items[0].id, "Wrong answer.")
+        reviews.answer(db, wrong_session.items[0].id, ReviewAnswer(user_answer="Wrong answer.", rating="again"))
+        error_row = analysis.generate_error_analysis(db, point_id, FixtureLlm())
+        assert error_row.error_type == "concept_confusion"
+        assert analysis.get_error_analysis(db, point_id).id == error_row.id
+        new_variants = analysis.generate_question_variants(db, point_id, FixtureLlm(), 2)
+        assert len(new_variants) == 2
+        approved_variant = analysis.approve_variant(db, new_variants[0].id)
+        assert approved_variant.status == "approved"
+        analysis.reject_variant(db, new_variants[1].id)
+        grown_point = knowledge_structure.get_knowledge_point(db, point_id)
+        assert len(grown_point.quiz_items) == 2  # the original question plus the approved variant
         knowledge_structure.delete_knowledge_point(db, point_id)
         db.expire_all()
         assert db.get(SourceDocument, source.id) is not None
@@ -131,7 +156,7 @@ try:
         assert source_ingestion.read_source_document(db, content_source_id).content == supplemented.content
         restored = source_content.restore_content(db, content_source_id, 2)
         assert restored.content == original_entry.content and restored.content_revision == 3
-    print("PASS: PostgreSQL migrations, concurrent content CAS, RSS supplement protection, draft approval, concurrent reviews, idempotent answers and provenance-safe deletion")
+    print("PASS: PostgreSQL migrations, concurrent content CAS, RSS supplement protection, draft approval, concurrent reviews, idempotent answers, error-analysis/question-variant generation and approval, and provenance-safe deletion")
 finally:
     if app_engine is not None:
         app_engine.dispose()

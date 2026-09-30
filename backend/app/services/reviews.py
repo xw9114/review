@@ -193,6 +193,9 @@ def answer(db: Session, item_id: int, payload: ReviewAnswer) -> ReviewSessionRea
             rating = cast(Rating, min((row.rating for row in group), key=lambda value: RATING_ORDER[value]))
             level, due_at = next_schedule(level, rating, now)
             count = progress.review_count if unchanged else 0
+            again_streak = progress.again_streak if unchanged else 0
+            total_again = progress.total_again if unchanged else 0
+            total_hard = progress.total_hard if unchanged else 0
             if progress is None:
                 progress = ReviewProgress(knowledge_point_id=point.id)
                 db.add(progress)
@@ -201,6 +204,10 @@ def answer(db: Session, item_id: int, payload: ReviewAnswer) -> ReviewSessionRea
             progress.review_count = count + 1
             progress.last_reviewed_at = now
             progress.due_at = due_at
+            # Deterministic weak-point signal for Phase 5 analysis: plain counters, no model call.
+            progress.again_streak = again_streak + 1 if rating == "again" else 0
+            progress.total_again = total_again + (rating == "again")
+            progress.total_hard = total_hard + (rating == "hard")
     if all(row.rating for row in session.items):
         session.status = "completed"
         session.active_key = None

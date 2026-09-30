@@ -1,11 +1,14 @@
 import type {
+  AnalysisOverview,
   Category,
+  ErrorAnalysis,
   FeedSource,
   FeedSourceInput,
   FeedSyncBatchResult,
   FeedSyncResult,
   KnowledgePoint,
   KnowledgePointEdit,
+  QuestionVariant,
   ReviewOverview,
   ReviewRating,
   ReviewSession,
@@ -18,6 +21,7 @@ import type {
   SourceStatus,
   SourceSyncResult,
   Topic,
+  VariantStatus,
 } from "./types";
 
 const API_BASE =
@@ -172,6 +176,26 @@ export const reviewApi = {
   answer: (id: number, userAnswer: string, rating: ReviewRating) => request<ReviewSession>(`/reviews/items/${id}/answer`, {
     method: "POST", body: JSON.stringify({ user_answer: userAnswer, rating }),
   }),
+};
+
+export const analysisApi = {
+  overview: () => request<AnalysisOverview>("/analysis/overview"),
+  getErrorAnalysis: (pointId: number) =>
+    request<ErrorAnalysis>(`/analysis/knowledge-points/${pointId}/error-analysis`),
+  generateErrorAnalysis: (pointId: number) =>
+    request<ErrorAnalysis>(`/analysis/knowledge-points/${pointId}/error-analysis/generate`, { method: "POST" }),
+  listQuestionVariants: (pointId: number, status?: VariantStatus) =>
+    request<QuestionVariant[]>(
+      `/analysis/knowledge-points/${pointId}/question-variants${status ? `?status=${status}` : ""}`,
+    ),
+  generateQuestionVariants: (pointId: number, count: number) =>
+    request<QuestionVariant[]>(`/analysis/knowledge-points/${pointId}/question-variants/generate`, {
+      method: "POST", body: JSON.stringify({ count }),
+    }),
+  approveVariant: (id: number) =>
+    request<QuestionVariant>(`/analysis/question-variants/${id}/approve`, { method: "POST" }),
+  rejectVariant: (id: number) =>
+    request<QuestionVariant>(`/analysis/question-variants/${id}/reject`, { method: "POST" }),
 };
 
 export const feedApi = {

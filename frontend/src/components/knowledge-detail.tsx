@@ -2,13 +2,20 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { knowledgeApi, sourceApi } from "@/lib/api";
-import type { Difficulty, KnowledgePoint, KnowledgePointEdit, SourceDocument, Topic } from "@/lib/types";
+import { analysisApi, knowledgeApi, sourceApi } from "@/lib/api";
+import type {
+  Difficulty, ErrorAnalysis, KnowledgePoint, KnowledgePointEdit, QuestionVariant, SourceDocument,
+  Topic,
+} from "@/lib/types";
 import { SourceContent } from "./source-content";
 import { useUnsavedChanges } from "./use-unsaved-changes";
 import styles from "./learning.module.css";
 
 const difficultyNames = { beginner: "入门", intermediate: "进阶", advanced: "深入" };
+const errorTypeNames = {
+  concept_confusion: "概念混淆", incomplete_recall: "记忆不完整", terminology_mixup: "术语混淆",
+  slip: "偶然失误", other: "其他",
+};
 function editable(point: KnowledgePoint): KnowledgePointEdit {
   return { name: point.name, summary: point.summary, description: point.description,
     difficulty: point.difficulty, key_points: point.key_points ?? [], quiz_items: point.quiz_items ?? [] };
@@ -24,6 +31,11 @@ export function KnowledgeDetail() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  const [errorAnalysis, setErrorAnalysis] = useState<ErrorAnalysis | null>(null);
+  const [analysisBusy, setAnalysisBusy] = useState(false);
+  const [variants, setVariants] = useState<QuestionVariant[]>([]);
+  const [variantCount, setVariantCount] = useState(3);
+  const [variantsBusy, setVariantsBusy] = useState(false);
   const dirty = editing && !!draft && !!point && JSON.stringify(draft) !== JSON.stringify(editable(point));
   useUnsavedChanges(dirty);
 
@@ -39,8 +51,44 @@ export function KnowledgeDetail() {
       })
       .catch((reason: unknown) => { if (!cancelled) setError(reason instanceof Error ? reason.message : "知识点读取失败"); })
       .finally(() => { if (!cancelled) setLoading(false); });
+    // Best-effort: a point with no analysis yet or no pending variants is a normal, not an error, state.
+    analysisApi.getErrorAnalysis(id).then((next) => { if (!cancelled) setErrorAnalysis(next); }).catch(() => {});
+    analysisApi.listQuestionVariants(id, "pending").then((next) => { if (!cancelled) setVariants(next); }).catch(() => {});
     return () => { cancelled = true; };
   }, []);
+
+  async function generateErrorAnalysis() {
+    if (!point || analysisBusy) return;
+    setAnalysisBusy(true); setError("");
+    try { setErrorAnalysis(await analysisApi.generateErrorAnalysis(point.id)); }
+    catch (reason) { setError(reason instanceof Error ? reason.message : "错题分析生成失败"); }
+    finally { setAnalysisBusy(false); }
+  }
+
+  async function generateVariants() {
+    if (!point || variantsBusy) return;
+    setVariantsBusy(true); setError("");
+    try { setVariants(await analysisApi.generateQuestionVariants(point.id, variantCount)); }
+    catch (reason) { setError(reason instanceof Error ? reason.message : "变式题生成失败"); }
+    finally { setVariantsBusy(false); }
+  }
+
+  async function reviewVariant(variantId: number, decision: "approve" | "reject") {
+    if (!point || variantsBusy) return;
+    setVariantsBusy(true); setError("");
+    try {
+      if (decision === "approve") {
+        await analysisApi.approveVariant(variantId);
+        const next = await knowledgeApi.getKnowledgePoint(point.id);
+        setPoint(next); setDraft(editable(next));
+        setNotice("已通过并加入题库。");
+      } else {
+        await analysisApi.rejectVariant(variantId);
+      }
+      setVariants((prev) => prev.filter((item) => item.id !== variantId));
+    } catch (reason) { setError(reason instanceof Error ? reason.message : "处理失败"); }
+    finally { setVariantsBusy(false); }
+  }
 
   async function save() {
     if (!point || !draft || busy) return;
@@ -100,6 +148,39 @@ export function KnowledgeDetail() {
         {!quiz.length && <p className={styles.muted}>这个知识点还没有题目。可以手动补充，或者从资料生成并审核 AI 草稿。</p>}
         {editing && <button className="button button-dark" disabled={busy || !valid} onClick={() => void save()}>{busy ? "正在保存…" : "保存内容"}</button>}
       </section>
+      {!!point.quiz_items?.length && <section className={styles.panel} aria-label="错题分析">
+        <div className={styles.toolbar}>
+          <h2>错题分析</h2>
+          <button className="button button-lime" disabled={analysisBusy} onClick={() => void generateErrorAnalysis()}>
+            {analysisBusy ? "正在分析…" : errorAnalysis ? "重新分析" : "分析错题"}
+          </button>
+        </div>
+        {errorAnalysis ? <div className={styles.questionEditor}>
+          <span className={styles.level}>{errorTypeNames[errorAnalysis.error_type]}</span>
+          <p>{errorAnalysis.explanation}</p>
+          <p className={styles.muted}>{errorAnalysis.suggestion}</p>
+        </div> : <p className={styles.muted}>还没有错题分析。答错过题目后，点击“分析错题”了解常见的错误类型和改进建议。</p>}
+      </section>}
+      {!!point.quiz_items?.length && <section className={styles.panel} aria-label="变式题">
+        <div className={styles.toolbar}>
+          <h2>变式题</h2>
+          <div className={styles.actions}>
+            <select value={variantCount} disabled={variantsBusy} onChange={(e) => setVariantCount(Number(e.target.value))}>
+              {[1, 2, 3, 4, 5].map((n) => <option key={n} value={n}>{n} 道</option>)}
+            </select>
+            <button className="button button-lime" disabled={variantsBusy} onClick={() => void generateVariants()}>{variantsBusy ? "正在生成…" : "生成变式题"}</button>
+          </div>
+        </div>
+        {variants.length ? variants.map((variant) => <div className={styles.questionEditor} key={variant.id}>
+          <span className={styles.eyebrow}>待审核</span>
+          <p>{variant.question}</p>
+          <p className={styles.muted}>{variant.answer}</p>
+          <div className={styles.actions}>
+            <button className="button button-dark" disabled={variantsBusy} onClick={() => void reviewVariant(variant.id, "approve")}>通过并加入题库</button>
+            <button className={styles.textButton} disabled={variantsBusy} onClick={() => void reviewVariant(variant.id, "reject")}>拒绝</button>
+          </div>
+        </div>) : <p className={styles.muted}>还没有待审核的变式题。生成后可以逐条通过或拒绝，通过的题目会加入上方题库。</p>}
+      </section>}
       {!!sources.length && <section className={styles.panel}><h2>来源与原文</h2>{sources.map((source) => <details className={styles.question} key={source.id}><summary>{source.source_name} · {source.title}</summary><Link href={`/sources?source=${source.id}&status=${source.status}`}>在资料收件箱中查看</Link><SourceContent content={source.content} /></details>)}</section>}
     </>}
   </div>;

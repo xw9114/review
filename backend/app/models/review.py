@@ -18,6 +18,10 @@ class ReviewProgress(Base):
     review_count: Mapped[int] = mapped_column(default=0, nullable=False)
     last_reviewed_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     due_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False, index=True)
+    # Deterministic weak-point signal for Phase 5 analysis: no model call, plain counters.
+    again_streak: Mapped[int] = mapped_column(default=0, nullable=False)
+    total_again: Mapped[int] = mapped_column(default=0, nullable=False)
+    total_hard: Mapped[int] = mapped_column(default=0, nullable=False)
 
 
 class ReviewSession(Base):

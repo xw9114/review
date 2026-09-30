@@ -7,10 +7,12 @@ from app.core.config import get_settings
 from app.db.database import Base
 from app.models import (  # noqa: F401
     Category,
+    ErrorAnalysis,
     FeedSource,
     KnowledgeDraft,
     KnowledgePoint,
     KnowledgePointSource,
+    QuestionVariant,
     SourceDocument,
     Topic,
     ReviewItem,

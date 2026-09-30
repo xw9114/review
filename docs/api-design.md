@@ -84,6 +84,28 @@ across all questions of a point updates its schedule only once. Quiz changes inv
 schedule without altering historical question/answer snapshots. This is a single-user workflow,
 protected by the existing authenticated gateway, not a multi-tenant API.
 
+## Analysis
+
+- `GET /analysis/overview`: mastery distribution (L1–L5 counts), up to ten weak points, the
+  error-type distribution across generated analyses, and deterministic Chinese tips.
+- `GET /analysis/knowledge-points/{id}/error-analysis`
+- `POST /analysis/knowledge-points/{id}/error-analysis/generate`
+- `GET /analysis/knowledge-points/{id}/question-variants?status={pending|approved|rejected}`
+- `POST /analysis/knowledge-points/{id}/question-variants/generate` (`count`, 1–5, default 3)
+- `POST /analysis/question-variants/{id}/approve`
+- `POST /analysis/question-variants/{id}/reject`
+
+The dashboard analytics, mastery distribution, and tips are computed from `review_progress`
+counters alone — no model call, matching the review scheduler's transparent, deterministic
+rules. Error classification and question-variant generation are the only two model-assisted
+actions in this feature: both are explicit and manual, follow the same generate-then-review
+lifecycle as AI knowledge drafts, and never run while practicing. A knowledge point needs at
+least one `again`/`hard`-rated answer before an error analysis can be generated. Regenerating an
+error analysis replaces its single stored row; regenerating question variants replaces only the
+still-`pending` rows for that point. Approving a variant appends it to the point's `quiz_items`
+and is the only write this feature makes to the knowledge base — identical in effect to editing
+the quiz list by hand.
+
 ## Feed sources
 
 - `GET /feed-sources`

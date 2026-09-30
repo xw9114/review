@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import { draftApi, knowledgeApi, reviewApi } from "@/lib/api";
 import type { Category, KnowledgePoint, ReviewOverview, Topic } from "@/lib/types";
+import { AnalysisPanel } from "./analysis-panel";
 import { Icon, type IconName } from "./icon";
 import styles from "./dashboard-overview.module.css";
 
@@ -90,6 +91,8 @@ export function DashboardOverview() {
           </div>
         ))}
       </section>
+
+      <AnalysisPanel />
 
       <div className={styles.libraryRow}>
         <section className={styles.library} aria-labelledby="library-heading">

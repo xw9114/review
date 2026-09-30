@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 
 from app.api.routes import (
+    analysis,
     categories,
     feed_sources,
     knowledge_drafts,
@@ -18,3 +19,4 @@ api_router.include_router(reviews.router)
 api_router.include_router(knowledge_drafts.router)
 api_router.include_router(source_documents.router)
 api_router.include_router(feed_sources.router)
+api_router.include_router(analysis.router)

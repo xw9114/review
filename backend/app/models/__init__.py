@@ -1,3 +1,4 @@
+from app.models.analysis import ErrorAnalysis, QuestionVariant
 from app.models.category import Category
 from app.models.feed_source import FeedSource
 from app.models.knowledge_point import KnowledgePoint
@@ -18,4 +19,6 @@ __all__ = [
     "ReviewItem",
     "ReviewProgress",
     "ReviewSession",
+    "ErrorAnalysis",
+    "QuestionVariant",
 ]

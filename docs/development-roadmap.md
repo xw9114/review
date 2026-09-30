@@ -34,15 +34,19 @@
 - Knowledge extraction, question generation, and manual verification
 - Original-text comparison, saved draft reuse, explicit regeneration and revision conflict checks
 
-## Phase 5 — analysis and adaptation
+## Phase 5 — analysis and adaptation (implemented)
 
-- Error classification
-- Question variants
-- Actionable learning advice
-- Dashboard analytics
+- Error classification — explicit, LLM-assisted; one current diagnosis per knowledge point
+- Question variants — explicit, LLM-assisted; generated as `pending` and require manual
+  approval before joining a point's `quiz_items`
+- Actionable learning advice — deterministic Chinese tips derived from `review_progress`
+  streak/level counters, no model call
+- Dashboard analytics — mastery distribution, weak-point list, and error-type breakdown via
+  `GET /analysis/overview`
 
-The current dashboard includes pending draft/review counts and mastery distribution. Automated
-error classification, adaptive variants and AI learning advice remain future work.
+Weak-point detection and the dashboard's tips are plain counter thresholds, in keeping with the
+L1–L5 scheduler's transparent rules; only the two explicit "分析错题" / "生成变式题" actions call
+the model, mirroring how AI knowledge drafts are generated and reviewed.
 
 ## Phase 6 — notification and deployment hardening
 

@@ -101,33 +101,47 @@ preserving any new writes you still want to keep.
 - Backup failures are visible in `/var/log/knowledge-review/backup.log` and via cron's default
   mail-to-root on non-zero exit; check that log if a daily dump looks missing.
 
-## Notifications (OpenClaw) — blocked on channel setup
+## Notifications (OpenClaw) — implemented
 
-Phase 6's original notification goal is a daily "you have N knowledge points due" digest,
-delivered through OpenClaw (already running on this host as a systemd service, managing chat
-channels and scheduled automations independently of this app).
+Phase 6's notification goal — a daily "you have N knowledge points due" digest — is live via
+OpenClaw, running on a **separate VPS** ("friend-vps", not the one hosting this app) that the
+account owner already uses as their personal chat-channel gateway (Feishu and WeChat both
+connected there; run under `supervisord` as `openclaw-gateway`, profile home
+`/opt/openclaw-home`).
 
-**Current state**: `openclaw channels status` reports no chat channel is configured yet (Feishu
-and WeCom are both installed as available channel plugins but not connected). Connecting one
-needs an app/bot created in that platform's own admin console and its credentials entered via
-`openclaw channels add --channel feishu` (or `wecom`) — this is a one-time, interactive, credential-
-bearing step only the account owner should run directly on the host, not something to script or
-paste into a chat transcript.
+**Integration shape**: OpenClaw polls this app, not the other way around. No code in this
+repository calls out to OpenClaw — `GET /api/v1/reviews/overview` (public over HTTPS, gated only
+by the gateway's Basic Auth) is the only integration surface, and it already returns `due_count`.
+This keeps the "no model call while practicing" boundary intact and needed zero backend changes.
 
-**Chosen integration shape** (decided 2026-09-30): OpenClaw polls this app, not the other way
-around. No code in this repository calls out to OpenClaw — `GET /api/v1/reviews/overview` (already
-public, `no auth` beyond the gateway's Basic Auth) is the only integration surface, and it already
-returns `due_count`. This keeps the "no model call while practicing" boundary intact and needs zero
-backend changes.
+**What's deployed, on friend-vps**:
+- A dedicated Basic Auth credential (`kr-digest`, its own line in this app's
+  `deploy/.htpasswd` — separate from the interactive `xw` login so it can be rotated or revoked
+  independently; the plaintext password lives only in the script below and is not committed to
+  this repo).
+- `/opt/openclaw-home/.openclaw/scripts/kr-due-digest.sh` (root-only, `chmod 700`): curls
+  `https://review.xw9114.online/api/v1/reviews/overview` with that credential, extracts
+  `due_count` via `python3 -c 'import json,sys; print(json.load(sys.stdin)["due_count"])'`, and
+  echoes a digest line only when `due_count > 0` — deterministic, no model call, matches the L1–L5
+  scheduler's own "transparent rules" philosophy.
+- An OpenClaw automation (a **command** job, not an agent job — same reasoning) registered with:
+  ```
+  openclaw cron add kr-due-digest \
+    --command '/opt/openclaw-home/.openclaw/scripts/kr-due-digest.sh' \
+    --cron "0 9 * * *" --tz Asia/Shanghai \
+    --channel feishu --to ou_0928f840a5f26a2283329e6de858b158 \
+    --announce --best-effort-deliver
+  ```
+  Automation id `f17e6ccb-004c-49e5-9e47-6b4e870837de`. Verified end to end on 2026-09-30 with
+  `openclaw cron run <id>` — the digest message was actually delivered to Feishu
+  (`deliveryStatus: "delivered"`) — then enabled; next run is the following 09:00 Asia/Shanghai.
 
-**Once a channel is connected**, register a deterministic command automation (not an agent job —
-no model call needed for a threshold check) along these lines:
-```bash
-openclaw cron add "kr-due-digest" --cron "0 9 * * *" --tz Asia/Shanghai \
-  --command 'n=$(curl -fsS -u "<gateway-user>:<gateway-pass>" http://127.0.0.1:3100/api/v1/reviews/overview | python3 -c "import json,sys;print(json.load(sys.stdin)[\"due_count\"])"); if [ "$n" -gt 0 ]; then echo "今日有 $n 个知识点待复习：https://review.xw9114.online/review"; fi' \
-  --announce --channel feishu --to <feishu-target> --best-effort-deliver
-```
-Use a dedicated Basic Auth credential for this (add a second line to `deploy/.htpasswd` rather than
-reusing the interactive login), so it can be rotated or revoked independently. Test with
-`openclaw cron run kr-due-digest` before trusting the schedule, and check `openclaw cron runs` for
-history once it is live.
+**Operating it**: `HOME=/opt/openclaw-home /opt/openclaw/bin/openclaw cron runs f17e6ccb-004c-49e5-9e47-6b4e870837de`
+shows run history; `cron get`/`cron run`/`cron disable` need the automation's UUID, not its
+friendly name (a CLI quirk — `cron list --all` prints both). To switch delivery to WeChat instead
+of Feishu, `cron edit` the same job with `--channel wechat --to <peer id>` (look up the id with
+`openclaw directory peers list --channel wechat`). To rotate the `kr-digest` credential: generate a
+new password, `openssl passwd -apr1 '<new password>'`, replace its line in this app's
+`deploy/.htpasswd` on the review-system VPS, and update the embedded password in
+`kr-due-digest.sh` on friend-vps to match — the two must always agree since nginx re-reads the
+htpasswd file on every request with no separate reload step.

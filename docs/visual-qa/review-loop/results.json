@@ -1,0 +1,107 @@
+[
+  {
+    "check": "generate-save-resume-approve-edit-reveal-reload-rate",
+    "passed": true,
+    "sessionUrl": "http://localhost:3001/review?session=1"
+  },
+  {
+    "check": "1440-light-dashboard",
+    "passed": true
+  },
+  {
+    "check": "1440-light-detail",
+    "passed": true
+  },
+  {
+    "check": "1440-light-review",
+    "passed": true
+  },
+  {
+    "check": "1440-light-drafts",
+    "passed": true
+  },
+  {
+    "check": "1440-dark-dashboard",
+    "passed": true
+  },
+  {
+    "check": "1440-dark-detail",
+    "passed": true
+  },
+  {
+    "check": "1440-dark-review",
+    "passed": true
+  },
+  {
+    "check": "1440-dark-drafts",
+    "passed": true
+  },
+  {
+    "check": "390-light-dashboard",
+    "passed": true
+  },
+  {
+    "check": "390-light-detail",
+    "passed": true
+  },
+  {
+    "check": "390-light-review",
+    "passed": true
+  },
+  {
+    "check": "390-light-drafts",
+    "passed": true
+  },
+  {
+    "check": "390-dark-dashboard",
+    "passed": true
+  },
+  {
+    "check": "390-dark-detail",
+    "passed": true
+  },
+  {
+    "check": "390-dark-review",
+    "passed": true
+  },
+  {
+    "check": "390-dark-drafts",
+    "passed": true
+  },
+  {
+    "check": "320-light-dashboard",
+    "passed": true
+  },
+  {
+    "check": "320-light-detail",
+    "passed": true
+  },
+  {
+    "check": "320-light-review",
+    "passed": true
+  },
+  {
+    "check": "320-light-drafts",
+    "passed": true
+  },
+  {
+    "check": "320-dark-dashboard",
+    "passed": true
+  },
+  {
+    "check": "320-dark-detail",
+    "passed": true
+  },
+  {
+    "check": "320-dark-review",
+    "passed": true
+  },
+  {
+    "check": "320-dark-drafts",
+    "passed": true
+  },
+  {
+    "check": "service-error-visible",
+    "passed": true
+  }
+]

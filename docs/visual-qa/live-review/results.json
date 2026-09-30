@@ -1,0 +1,76 @@
+{
+  "readOnly": true,
+  "draftId": 1,
+  "results": [
+    {
+      "name": "dashboard",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "horizontalOverflow": false
+    },
+    {
+      "name": "source",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "horizontalOverflow": false
+    },
+    {
+      "name": "draft",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "horizontalOverflow": false
+    },
+    {
+      "name": "detail",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "horizontalOverflow": false
+    },
+    {
+      "name": "review",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "horizontalOverflow": false
+    },
+    {
+      "name": "dashboard",
+      "width": 320,
+      "theme": "dark",
+      "status": 200,
+      "horizontalOverflow": false
+    },
+    {
+      "name": "source",
+      "width": 320,
+      "theme": "dark",
+      "status": 200,
+      "horizontalOverflow": false
+    },
+    {
+      "name": "draft",
+      "width": 320,
+      "theme": "dark",
+      "status": 200,
+      "horizontalOverflow": false
+    },
+    {
+      "name": "detail",
+      "width": 320,
+      "theme": "dark",
+      "status": 200,
+      "horizontalOverflow": false
+    },
+    {
+      "name": "review",
+      "width": 320,
+      "theme": "dark",
+      "status": 200,
+      "horizontalOverflow": false
+    }
+  ]
+}

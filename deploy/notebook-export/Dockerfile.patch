@@ -1,0 +1,11 @@
+--- Dockerfile
++++ Dockerfile
+@@ -3,7 +3,7 @@
+ COPY requirements.txt .
+ RUN pip install --no-cache-dir -r requirements.txt
+ RUN useradd --create-home --uid 10001 notebook && mkdir /data && chown notebook:notebook /data
+-COPY --chown=notebook:notebook app.py worker.py ./
++COPY --chown=notebook:notebook app.py worker.py notebook_export.py ./
+ COPY --chown=notebook:notebook dist ./dist
+ USER notebook
+ ENV DB_PATH=/data/notebook.db

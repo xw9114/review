@@ -1,0 +1,68 @@
+.richText {
+  color: var(--foreground);
+  font-size: 13px;
+  line-height: 1.95;
+  overflow-wrap: anywhere;
+}
+
+.richText > :first-child { margin-top: 0; }
+.richText > :last-child { margin-bottom: 0; }
+.richText p { margin: 0 0 14px; }
+.richText h1, .richText h2, .richText h3, .richText h4 {
+  margin: 24px 0 10px;
+  color: var(--foreground);
+  font-weight: 650;
+  line-height: 1.45;
+}
+.richText h1 { font-size: 20px; }
+.richText h2 { padding-bottom: 6px; border-bottom: 1px solid var(--line); font-size: 16px; }
+.richText h3 { font-size: 14px; }
+.richText h4 { font-size: 13px; }
+.richText ul, .richText ol { margin: 10px 0 16px; padding-left: 24px; }
+.richText li { margin: 4px 0; }
+.richText blockquote {
+  margin: 16px 0;
+  padding: 8px 14px;
+  border-left: 3px solid var(--brand);
+  color: var(--muted);
+  background: var(--surface-soft);
+}
+.richText a { color: var(--brand); text-decoration: underline; text-underline-offset: 3px; }
+.richText code {
+  border-radius: 4px;
+  padding: 2px 5px;
+  background: var(--surface-soft);
+  font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+  font-size: .9em;
+}
+.richText pre {
+  max-width: 100%;
+  margin: 16px 0;
+  padding: 14px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface-soft);
+  line-height: 1.65;
+}
+.richText pre code { padding: 0; background: transparent; }
+.richText table { width: 100%; margin: 16px 0; border-collapse: collapse; font-size: 11px; }
+.richText th, .richText td { border: 1px solid var(--line); padding: 7px 9px; text-align: left; }
+.richText th { background: var(--surface-soft); font-weight: 600; }
+.richText hr { margin: 22px 0; border: 0; border-top: 1px solid var(--line); }
+.richText :global(.katex) { font-size: 1.04em; }
+.richText :global(.katex-display) {
+  margin: 16px 0;
+  padding: 13px 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--surface-soft) 64%, var(--surface));
+  text-align: center;
+}
+
+@media (max-width: 520px) {
+  .richText { font-size: 12px; line-height: 1.85; }
+  .richText :global(.katex-display) { padding: 11px 10px; text-align: left; }
+}

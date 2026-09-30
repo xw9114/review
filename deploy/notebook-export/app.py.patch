@@ -1,0 +1,12 @@
+--- app.py
++++ app.py
+@@ -59,6 +59,9 @@
+         c.execute("INSERT OR IGNORE INTO settings VALUES('daily_time','08:00')")
+         c.execute("INSERT OR IGNORE INTO settings VALUES('daily_enabled','0')")
+ init_db()
++
++from notebook_export import create_notebook_export_blueprint
++app.register_blueprint(create_notebook_export_blueprint(db))
+ 
+ IMAGE_LIMIT = 4
+ IMAGE_MAX_BYTES = 5 * 1024 * 1024

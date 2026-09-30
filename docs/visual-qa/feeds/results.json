@@ -1,0 +1,42 @@
+[
+  {
+    "name": "desktop-light-feeds",
+    "status": 200,
+    "viewportWidth": 1440,
+    "documentWidth": 1440,
+    "horizontalOverflow": false,
+    "heading": "让好内容自己来到桌面。",
+    "sourceRows": 3,
+    "errors": []
+  },
+  {
+    "name": "desktop-dark-feeds",
+    "status": 200,
+    "viewportWidth": 1440,
+    "documentWidth": 1440,
+    "horizontalOverflow": false,
+    "heading": "让好内容自己来到桌面。",
+    "sourceRows": 3,
+    "errors": []
+  },
+  {
+    "name": "mobile-light-feeds",
+    "status": 200,
+    "viewportWidth": 390,
+    "documentWidth": 390,
+    "horizontalOverflow": false,
+    "heading": "让好内容自己来到桌面。",
+    "sourceRows": 3,
+    "errors": []
+  },
+  {
+    "name": "mobile-dark-feeds",
+    "status": 200,
+    "viewportWidth": 390,
+    "documentWidth": 390,
+    "horizontalOverflow": false,
+    "heading": "让好内容自己来到桌面。",
+    "sourceRows": 3,
+    "errors": []
+  }
+]

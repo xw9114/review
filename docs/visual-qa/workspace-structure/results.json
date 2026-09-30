@@ -1,0 +1,66 @@
+[
+  {
+    "name": "107-item queue, collapsed manual flow, no automatic writes",
+    "passed": true
+  },
+  {
+    "name": "search title/source/author, provider intersection, no hidden-detail actions",
+    "passed": true
+  },
+  {
+    "name": "deep selection, selected row scroll, reload preserve source/status",
+    "passed": true
+  },
+  {
+    "name": "manual dirty guard on selection/filter/status/navigation/AI; collapse retains text",
+    "passed": true
+  },
+  {
+    "name": "manual accept confirmation, conflict retains edits, explicit success only",
+    "passed": true
+  },
+  {
+    "name": "failed deep-link read is not empty/success; retry retains requested source",
+    "passed": true
+  },
+  {
+    "name": "missing topic disables new generation; in-flight request locks triage",
+    "passed": true
+  },
+  {
+    "name": "existing stale draft opens review without new generation",
+    "passed": true
+  },
+  {
+    "name": "1440px light: six links, queue/decision layout, no overflow",
+    "passed": true
+  },
+  {
+    "name": "1440px dark: six links, queue/decision layout, no overflow",
+    "passed": true
+  },
+  {
+    "name": "768px light: six links, queue/decision layout, no overflow",
+    "passed": true
+  },
+  {
+    "name": "768px dark: six links, queue/decision layout, no overflow",
+    "passed": true
+  },
+  {
+    "name": "390px light: six links, queue/decision layout, no overflow",
+    "passed": true
+  },
+  {
+    "name": "390px dark: six links, queue/decision layout, no overflow",
+    "passed": true
+  },
+  {
+    "name": "320px light: six links, queue/decision layout, no overflow",
+    "passed": true
+  },
+  {
+    "name": "320px dark: six links, queue/decision layout, no overflow",
+    "passed": true
+  }
+]

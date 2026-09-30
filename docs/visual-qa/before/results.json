@@ -1,0 +1,322 @@
+[
+  {
+    "name": "desktop-light-dashboard",
+    "status": 200,
+    "viewportWidth": 1440,
+    "documentWidth": 1440,
+    "horizontalOverflow": false,
+    "theme": "light",
+    "heading": "下午好，先把知识放到正确的位置。",
+    "alerts": [],
+    "bodyText": "K\n知衡\nKnowledge Review\n⌂\n今日概览\n◇\n知识结构\n✓\n每日复习\n下一阶段\n⌁\n学习分析\n下一阶段\nPhase 1\n\n先建立可靠的知识结构，再让题目与复习计划围绕它生长。\n\n2026 · 个人知识能力模型\n\n下午好，先把知识放到正确的位置。\n\n这里会逐步回答：你会什么、正在遗忘什么，以及今天最值得复习什么。\n\n◐\n今日复习\n复习引擎将在下一阶段启用\n\n现在先整理你的知识领域、主题与最小知识点，为后续出题和调度建立骨架。\n\n管理知识结构\n→\n知识领域\nCategory\n0\n主题\nTopic\n0\n知识点\nKnowledgePoint\n0\n开始使用\n三步建立第一棵知识树\n01\n创建领域\n\n例如 ROS2、STM32 或 Robocon 视觉。\n\n02\n拆分主题\n\n把领域拆成 QoS、CAN、图像滤波等主题。\n\n03\n提炼知识点\n\n保存 Reliability、Depth 等可独立复习的知识单元。\n\n核心原则\n题目会变化，知识点才是长期积累的核心数据。\n\n下一阶段的掌握度、错因和复习时间都会落在知识点的 L1～L5 能力上。",
+    "visibleButtons": [
+      {
+        "label": "切换到深色模式",
+        "disabled": false
+      }
+    ],
+    "errors": [],
+    "failedRequests": [],
+    "apiResponses": [
+      {
+        "url": "http://localhost:8001/api/v1/categories",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/knowledge-points",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/topics",
+        "status": 200
+      }
+    ],
+    "blockedWrites": []
+  },
+  {
+    "name": "desktop-light-knowledge",
+    "status": 200,
+    "viewportWidth": 1440,
+    "documentWidth": 1440,
+    "horizontalOverflow": false,
+    "theme": "light",
+    "heading": "建立你的知识坐标系",
+    "alerts": [],
+    "bodyText": "K\n知衡\nKnowledge Review\n⌂\n今日概览\n◇\n知识结构\n✓\n每日复习\n下一阶段\n⌁\n学习分析\n下一阶段\nPhase 1\n\n先建立可靠的知识结构，再让题目与复习计划围绕它生长。\n\n知识结构\n\n建立你的知识坐标系\n\n按领域、主题、知识点逐层拆分。知识点应足够小，能够被独立出题、复习和评估。\n\n◐\n选择领域\n/\n选择主题\n/\n0 个知识点\nCATEGORY\n领域\n0\n领域名称\n简短说明\n添加领域\n\n还没有领域，从 ROS2 或 STM32 开始。\n\nTOPIC\n主题\n0\n主题名称\n简短说明\n添加主题\n\n请先选择或创建领域。\n\nKNOWLEDGEPOINT\n知识点\n0\n知识点名称\n简短说明\n添加知识点\n\n请先选择或创建主题。",
+    "visibleButtons": [
+      {
+        "label": "切换到深色模式",
+        "disabled": false
+      },
+      {
+        "label": "添加领域",
+        "disabled": true
+      },
+      {
+        "label": "添加主题",
+        "disabled": true
+      },
+      {
+        "label": "添加知识点",
+        "disabled": true
+      }
+    ],
+    "errors": [],
+    "failedRequests": [],
+    "apiResponses": [
+      {
+        "url": "http://localhost:8001/api/v1/knowledge-points",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/categories",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/topics",
+        "status": 200
+      }
+    ],
+    "blockedWrites": []
+  },
+  {
+    "name": "desktop-dark-dashboard",
+    "status": 200,
+    "viewportWidth": 1440,
+    "documentWidth": 1440,
+    "horizontalOverflow": false,
+    "theme": "dark",
+    "heading": "下午好，先把知识放到正确的位置。",
+    "alerts": [],
+    "bodyText": "K\n知衡\nKnowledge Review\n⌂\n今日概览\n◇\n知识结构\n✓\n每日复习\n下一阶段\n⌁\n学习分析\n下一阶段\nPhase 1\n\n先建立可靠的知识结构，再让题目与复习计划围绕它生长。\n\n2026 · 个人知识能力模型\n\n下午好，先把知识放到正确的位置。\n\n这里会逐步回答：你会什么、正在遗忘什么，以及今天最值得复习什么。\n\n◐\n今日复习\n复习引擎将在下一阶段启用\n\n现在先整理你的知识领域、主题与最小知识点，为后续出题和调度建立骨架。\n\n管理知识结构\n→\n知识领域\nCategory\n0\n主题\nTopic\n0\n知识点\nKnowledgePoint\n0\n开始使用\n三步建立第一棵知识树\n01\n创建领域\n\n例如 ROS2、STM32 或 Robocon 视觉。\n\n02\n拆分主题\n\n把领域拆成 QoS、CAN、图像滤波等主题。\n\n03\n提炼知识点\n\n保存 Reliability、Depth 等可独立复习的知识单元。\n\n核心原则\n题目会变化，知识点才是长期积累的核心数据。\n\n下一阶段的掌握度、错因和复习时间都会落在知识点的 L1～L5 能力上。",
+    "visibleButtons": [
+      {
+        "label": "切换到深色模式",
+        "disabled": false
+      }
+    ],
+    "errors": [],
+    "failedRequests": [],
+    "apiResponses": [
+      {
+        "url": "http://localhost:8001/api/v1/categories",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/knowledge-points",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/topics",
+        "status": 200
+      }
+    ],
+    "blockedWrites": []
+  },
+  {
+    "name": "desktop-dark-knowledge",
+    "status": 200,
+    "viewportWidth": 1440,
+    "documentWidth": 1440,
+    "horizontalOverflow": false,
+    "theme": "dark",
+    "heading": "建立你的知识坐标系",
+    "alerts": [],
+    "bodyText": "K\n知衡\nKnowledge Review\n⌂\n今日概览\n◇\n知识结构\n✓\n每日复习\n下一阶段\n⌁\n学习分析\n下一阶段\nPhase 1\n\n先建立可靠的知识结构，再让题目与复习计划围绕它生长。\n\n知识结构\n\n建立你的知识坐标系\n\n按领域、主题、知识点逐层拆分。知识点应足够小，能够被独立出题、复习和评估。\n\n◐\n选择领域\n/\n选择主题\n/\n0 个知识点\nCATEGORY\n领域\n0\n领域名称\n简短说明\n添加领域\n\n还没有领域，从 ROS2 或 STM32 开始。\n\nTOPIC\n主题\n0\n主题名称\n简短说明\n添加主题\n\n请先选择或创建领域。\n\nKNOWLEDGEPOINT\n知识点\n0\n知识点名称\n简短说明\n添加知识点\n\n请先选择或创建主题。",
+    "visibleButtons": [
+      {
+        "label": "切换到深色模式",
+        "disabled": false
+      },
+      {
+        "label": "添加领域",
+        "disabled": true
+      },
+      {
+        "label": "添加主题",
+        "disabled": true
+      },
+      {
+        "label": "添加知识点",
+        "disabled": true
+      }
+    ],
+    "errors": [],
+    "failedRequests": [],
+    "apiResponses": [
+      {
+        "url": "http://localhost:8001/api/v1/topics",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/knowledge-points",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/categories",
+        "status": 200
+      }
+    ],
+    "blockedWrites": []
+  },
+  {
+    "name": "mobile-light-dashboard",
+    "status": 200,
+    "viewportWidth": 390,
+    "documentWidth": 390,
+    "horizontalOverflow": false,
+    "theme": "light",
+    "heading": "下午好，先把知识放到正确的位置。",
+    "alerts": [],
+    "bodyText": "K\n知衡\n今日概览\n知识结构\n\n2026 · 个人知识能力模型\n\n下午好，先把知识放到正确的位置。\n\n这里会逐步回答：你会什么、正在遗忘什么，以及今天最值得复习什么。\n\n◐\n今日复习\n复习引擎将在下一阶段启用\n\n现在先整理你的知识领域、主题与最小知识点，为后续出题和调度建立骨架。\n\n管理知识结构\n→\n知识领域\nCategory\n0\n主题\nTopic\n0\n知识点\nKnowledgePoint\n0\n开始使用\n三步建立第一棵知识树\n01\n创建领域\n\n例如 ROS2、STM32 或 Robocon 视觉。\n\n02\n拆分主题\n\n把领域拆成 QoS、CAN、图像滤波等主题。\n\n03\n提炼知识点\n\n保存 Reliability、Depth 等可独立复习的知识单元。\n\n核心原则\n题目会变化，知识点才是长期积累的核心数据。\n\n下一阶段的掌握度、错因和复习时间都会落在知识点的 L1～L5 能力上。",
+    "visibleButtons": [
+      {
+        "label": "切换到深色模式",
+        "disabled": false
+      }
+    ],
+    "errors": [],
+    "failedRequests": [],
+    "apiResponses": [
+      {
+        "url": "http://localhost:8001/api/v1/topics",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/categories",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/knowledge-points",
+        "status": 200
+      }
+    ],
+    "blockedWrites": []
+  },
+  {
+    "name": "mobile-light-knowledge",
+    "status": 200,
+    "viewportWidth": 390,
+    "documentWidth": 390,
+    "horizontalOverflow": false,
+    "theme": "light",
+    "heading": "建立你的知识坐标系",
+    "alerts": [],
+    "bodyText": "K\n知衡\n今日概览\n知识结构\n\n知识结构\n\n建立你的知识坐标系\n\n按领域、主题、知识点逐层拆分。知识点应足够小，能够被独立出题、复习和评估。\n\n◐\n选择领域\n/\n选择主题\n/\n0 个知识点\nCATEGORY\n领域\n0\n领域名称\n简短说明\n添加领域\n\n还没有领域，从 ROS2 或 STM32 开始。\n\nTOPIC\n主题\n0\n主题名称\n简短说明\n添加主题\n\n请先选择或创建领域。\n\nKNOWLEDGEPOINT\n知识点\n0\n知识点名称\n简短说明\n添加知识点\n\n请先选择或创建主题。",
+    "visibleButtons": [
+      {
+        "label": "切换到深色模式",
+        "disabled": false
+      },
+      {
+        "label": "添加领域",
+        "disabled": true
+      },
+      {
+        "label": "添加主题",
+        "disabled": true
+      },
+      {
+        "label": "添加知识点",
+        "disabled": true
+      }
+    ],
+    "errors": [],
+    "failedRequests": [],
+    "apiResponses": [
+      {
+        "url": "http://localhost:8001/api/v1/topics",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/categories",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/knowledge-points",
+        "status": 200
+      }
+    ],
+    "blockedWrites": []
+  },
+  {
+    "name": "mobile-dark-dashboard",
+    "status": 200,
+    "viewportWidth": 390,
+    "documentWidth": 390,
+    "horizontalOverflow": false,
+    "theme": "dark",
+    "heading": "下午好，先把知识放到正确的位置。",
+    "alerts": [],
+    "bodyText": "K\n知衡\n今日概览\n知识结构\n\n2026 · 个人知识能力模型\n\n下午好，先把知识放到正确的位置。\n\n这里会逐步回答：你会什么、正在遗忘什么，以及今天最值得复习什么。\n\n◐\n今日复习\n复习引擎将在下一阶段启用\n\n现在先整理你的知识领域、主题与最小知识点，为后续出题和调度建立骨架。\n\n管理知识结构\n→\n知识领域\nCategory\n0\n主题\nTopic\n0\n知识点\nKnowledgePoint\n0\n开始使用\n三步建立第一棵知识树\n01\n创建领域\n\n例如 ROS2、STM32 或 Robocon 视觉。\n\n02\n拆分主题\n\n把领域拆成 QoS、CAN、图像滤波等主题。\n\n03\n提炼知识点\n\n保存 Reliability、Depth 等可独立复习的知识单元。\n\n核心原则\n题目会变化，知识点才是长期积累的核心数据。\n\n下一阶段的掌握度、错因和复习时间都会落在知识点的 L1～L5 能力上。",
+    "visibleButtons": [
+      {
+        "label": "切换到深色模式",
+        "disabled": false
+      }
+    ],
+    "errors": [],
+    "failedRequests": [],
+    "apiResponses": [
+      {
+        "url": "http://localhost:8001/api/v1/topics",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/knowledge-points",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/categories",
+        "status": 200
+      }
+    ],
+    "blockedWrites": []
+  },
+  {
+    "name": "mobile-dark-knowledge",
+    "status": 200,
+    "viewportWidth": 390,
+    "documentWidth": 390,
+    "horizontalOverflow": false,
+    "theme": "dark",
+    "heading": "建立你的知识坐标系",
+    "alerts": [],
+    "bodyText": "K\n知衡\n今日概览\n知识结构\n\n知识结构\n\n建立你的知识坐标系\n\n按领域、主题、知识点逐层拆分。知识点应足够小，能够被独立出题、复习和评估。\n\n◐\n选择领域\n/\n选择主题\n/\n0 个知识点\nCATEGORY\n领域\n0\n领域名称\n简短说明\n添加领域\n\n还没有领域，从 ROS2 或 STM32 开始。\n\nTOPIC\n主题\n0\n主题名称\n简短说明\n添加主题\n\n请先选择或创建领域。\n\nKNOWLEDGEPOINT\n知识点\n0\n知识点名称\n简短说明\n添加知识点\n\n请先选择或创建主题。",
+    "visibleButtons": [
+      {
+        "label": "切换到深色模式",
+        "disabled": false
+      },
+      {
+        "label": "添加领域",
+        "disabled": true
+      },
+      {
+        "label": "添加主题",
+        "disabled": true
+      },
+      {
+        "label": "添加知识点",
+        "disabled": true
+      }
+    ],
+    "errors": [],
+    "failedRequests": [],
+    "apiResponses": [
+      {
+        "url": "http://localhost:8001/api/v1/categories",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/knowledge-points",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/topics",
+        "status": 200
+      }
+    ],
+    "blockedWrites": []
+  }
+]

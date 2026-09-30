@@ -1,0 +1,306 @@
+[
+  {
+    "name": "desktop-light-dashboard",
+    "status": 200,
+    "viewportWidth": 1440,
+    "documentWidth": 1440,
+    "horizontalOverflow": false,
+    "theme": "light",
+    "heading": "今天，也有新的收获。",
+    "alerts": [],
+    "bodyText": "跳到主要内容\n知衡.\nKNOWLEDGE STUDIO\n我的学习空间\n\nWORKSPACE\n\n今日概览\n我的知识库\n每日复习\n即将到来\n学习洞察\n即将到来\n\n每天一点，\n离融会贯通更近一点。\n\nSTAY CURIOUS.\n知\n终身学习者\n我的个人工作台\n我的空间\n今日概览\n搜索知识库\n\nA LITTLE BETTER, EVERY DAY\n\n今天，也有新的收获。\n\n留住灵感，连接知识。让每一次学习都有迹可循。\n\n新建领域\n一点一滴，积累成自己的底气\n把学过的，\n变成自己的。\n\n不止收藏，更要真正掌握。\n从整理一个小知识点开始。\n\n整理我的知识\nKEEP GROWING\n01 / GROW YOUR MIND\n给今天的你\n学得慢一点，\n也没关系。\n记得久一点就好。\n积累有自己的节奏\nNOTE / 001\n探索的领域\n为好奇心留一席之地\n00\n串联的主题\n让零散想法有条有理\n00\n积累的知识点\n每一个小点，都算数\n00\n我的知识版图\n\n让好奇心有方向，让知识有连接。\n\n进入知识库\n✳\n这里，留给你的无限可能。\n\n代码、设计、语言，或任何让你眼睛发亮的事。\n\n创建第一个领域\n你的下一次「原来如此」，从这里开始。\n从这里，开始生长\n\n一棵知识树，只需要三小步。\n\n01\n圈定一个领域\n\n从你正在学的、感兴趣的开始。\n\n02\n拆成几个小主题\n\n把大的方向，变成清晰的线索。\n\n03\n留下一个知识点\n\n用自己的话，记下新的理解。\n\nLESS, BUT BETTER.\n\n不必一次整理所有知识。\n今天的一小步，就很好。\n\n慢慢来，知识会生长。\nMADE FOR YOUR CURIOUS MIND",
+    "visibleButtons": [
+      {
+        "label": "切换到深色模式",
+        "disabled": false
+      }
+    ],
+    "errors": [],
+    "failedRequests": [],
+    "apiResponses": [
+      {
+        "url": "http://localhost:8001/api/v1/categories",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/knowledge-points",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/topics",
+        "status": 200
+      }
+    ],
+    "blockedWrites": []
+  },
+  {
+    "name": "desktop-light-knowledge",
+    "status": 200,
+    "viewportWidth": 1440,
+    "documentWidth": 1440,
+    "horizontalOverflow": false,
+    "theme": "light",
+    "heading": "给知识，一个自己的位置。",
+    "alerts": [],
+    "bodyText": "跳到主要内容\n知衡.\nKNOWLEDGE STUDIO\n我的学习空间\n\nWORKSPACE\n\n今日概览\n我的知识库\n每日复习\n即将到来\n学习洞察\n即将到来\n\n每天一点，\n离融会贯通更近一点。\n\nSTAY CURIOUS.\n知\n终身学习者\n我的个人工作台\n我的空间\n我的知识库\n搜索知识库\n\nYOUR PERSONAL KNOWLEDGE LIBRARY\n\n给知识，一个自己的位置。\n\n从一个领域开始，慢慢长出属于你的知识地图。\n\n个人知识空间\n0 个领域 · 0 个知识点\n新建领域\n我的领域\n00\n\n还没有领域。\n给你的好奇心留个位置。\n\n知识不用一口气整理好。\n每天留下一点，就很好。\n\n+\nSTEP 01 / 03\n从一个感兴趣的领域开始\n\n编程、摄影，或最近想读懂的任何事。先给它起个名字，再慢慢填满。\n\n创建第一个领域\n领域\n主题\n知识点\n每一点积累，都算数。\n慢慢来，知识会生长。\nMADE FOR YOUR CURIOUS MIND",
+    "visibleButtons": [
+      {
+        "label": "切换到深色模式",
+        "disabled": false
+      },
+      {
+        "label": "新建领域",
+        "disabled": false
+      },
+      {
+        "label": "创建第一个领域",
+        "disabled": false
+      }
+    ],
+    "errors": [],
+    "failedRequests": [],
+    "apiResponses": [
+      {
+        "url": "http://localhost:8001/api/v1/categories",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/knowledge-points",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/topics",
+        "status": 200
+      }
+    ],
+    "blockedWrites": []
+  },
+  {
+    "name": "desktop-dark-dashboard",
+    "status": 200,
+    "viewportWidth": 1440,
+    "documentWidth": 1440,
+    "horizontalOverflow": false,
+    "theme": "dark",
+    "heading": "今天，也有新的收获。",
+    "alerts": [],
+    "bodyText": "跳到主要内容\n知衡.\nKNOWLEDGE STUDIO\n我的学习空间\n\nWORKSPACE\n\n今日概览\n我的知识库\n每日复习\n即将到来\n学习洞察\n即将到来\n\n每天一点，\n离融会贯通更近一点。\n\nSTAY CURIOUS.\n知\n终身学习者\n我的个人工作台\n我的空间\n今日概览\n搜索知识库\n\nA LITTLE BETTER, EVERY DAY\n\n今天，也有新的收获。\n\n留住灵感，连接知识。让每一次学习都有迹可循。\n\n新建领域\n一点一滴，积累成自己的底气\n把学过的，\n变成自己的。\n\n不止收藏，更要真正掌握。\n从整理一个小知识点开始。\n\n整理我的知识\nKEEP GROWING\n01 / GROW YOUR MIND\n给今天的你\n学得慢一点，\n也没关系。\n记得久一点就好。\n积累有自己的节奏\nNOTE / 001\n探索的领域\n为好奇心留一席之地\n00\n串联的主题\n让零散想法有条有理\n00\n积累的知识点\n每一个小点，都算数\n00\n我的知识版图\n\n让好奇心有方向，让知识有连接。\n\n进入知识库\n✳\n这里，留给你的无限可能。\n\n代码、设计、语言，或任何让你眼睛发亮的事。\n\n创建第一个领域\n你的下一次「原来如此」，从这里开始。\n从这里，开始生长\n\n一棵知识树，只需要三小步。\n\n01\n圈定一个领域\n\n从你正在学的、感兴趣的开始。\n\n02\n拆成几个小主题\n\n把大的方向，变成清晰的线索。\n\n03\n留下一个知识点\n\n用自己的话，记下新的理解。\n\nLESS, BUT BETTER.\n\n不必一次整理所有知识。\n今天的一小步，就很好。\n\n慢慢来，知识会生长。\nMADE FOR YOUR CURIOUS MIND",
+    "visibleButtons": [
+      {
+        "label": "切换到浅色模式",
+        "disabled": false
+      }
+    ],
+    "errors": [],
+    "failedRequests": [],
+    "apiResponses": [
+      {
+        "url": "http://localhost:8001/api/v1/knowledge-points",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/topics",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/categories",
+        "status": 200
+      }
+    ],
+    "blockedWrites": []
+  },
+  {
+    "name": "desktop-dark-knowledge",
+    "status": 200,
+    "viewportWidth": 1440,
+    "documentWidth": 1440,
+    "horizontalOverflow": false,
+    "theme": "dark",
+    "heading": "给知识，一个自己的位置。",
+    "alerts": [],
+    "bodyText": "跳到主要内容\n知衡.\nKNOWLEDGE STUDIO\n我的学习空间\n\nWORKSPACE\n\n今日概览\n我的知识库\n每日复习\n即将到来\n学习洞察\n即将到来\n\n每天一点，\n离融会贯通更近一点。\n\nSTAY CURIOUS.\n知\n终身学习者\n我的个人工作台\n我的空间\n我的知识库\n搜索知识库\n\nYOUR PERSONAL KNOWLEDGE LIBRARY\n\n给知识，一个自己的位置。\n\n从一个领域开始，慢慢长出属于你的知识地图。\n\n个人知识空间\n0 个领域 · 0 个知识点\n新建领域\n我的领域\n00\n\n还没有领域。\n给你的好奇心留个位置。\n\n知识不用一口气整理好。\n每天留下一点，就很好。\n\n+\nSTEP 01 / 03\n从一个感兴趣的领域开始\n\n编程、摄影，或最近想读懂的任何事。先给它起个名字，再慢慢填满。\n\n创建第一个领域\n领域\n主题\n知识点\n每一点积累，都算数。\n慢慢来，知识会生长。\nMADE FOR YOUR CURIOUS MIND",
+    "visibleButtons": [
+      {
+        "label": "切换到浅色模式",
+        "disabled": false
+      },
+      {
+        "label": "新建领域",
+        "disabled": false
+      },
+      {
+        "label": "创建第一个领域",
+        "disabled": false
+      }
+    ],
+    "errors": [],
+    "failedRequests": [],
+    "apiResponses": [
+      {
+        "url": "http://localhost:8001/api/v1/knowledge-points",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/topics",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/categories",
+        "status": 200
+      }
+    ],
+    "blockedWrites": []
+  },
+  {
+    "name": "mobile-light-dashboard",
+    "status": 200,
+    "viewportWidth": 390,
+    "documentWidth": 390,
+    "horizontalOverflow": false,
+    "theme": "light",
+    "heading": "今天，也有新的收获。",
+    "alerts": [],
+    "bodyText": "跳到主要内容\n知衡.\n今日概览\n我的知识库\n我的空间\n今日概览\n\nA LITTLE BETTER, EVERY DAY\n\n今天，也有新的收获。\n\n留住灵感，连接知识。让每一次学习都有迹可循。\n\n新建领域\n一点一滴，积累成自己的底气\n把学过的，\n变成自己的。\n\n不止收藏，更要真正掌握。\n从整理一个小知识点开始。\n\n整理我的知识\nKEEP GROWING\n探索的领域\n00\n串联的主题\n00\n积累的知识点\n00\n我的知识版图\n\n让好奇心有方向，让知识有连接。\n\n进入知识库\n✳\n这里，留给你的无限可能。\n\n代码、设计、语言，或任何让你眼睛发亮的事。\n\n创建第一个领域\n你的下一次「原来如此」，从这里开始。\n从这里，开始生长\n\n一棵知识树，只需要三小步。\n\n01\n圈定一个领域\n\n从你正在学的、感兴趣的开始。\n\n02\n拆成几个小主题\n\n把大的方向，变成清晰的线索。\n\n03\n留下一个知识点\n\n用自己的话，记下新的理解。\n\nLESS, BUT BETTER.\n\n不必一次整理所有知识。\n今天的一小步，就很好。\n\n慢慢来，知识会生长。\nMADE FOR YOUR CURIOUS MIND",
+    "visibleButtons": [
+      {
+        "label": "切换到深色模式",
+        "disabled": false
+      }
+    ],
+    "errors": [],
+    "failedRequests": [],
+    "apiResponses": [
+      {
+        "url": "http://localhost:8001/api/v1/knowledge-points",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/categories",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/topics",
+        "status": 200
+      }
+    ],
+    "blockedWrites": []
+  },
+  {
+    "name": "mobile-light-knowledge",
+    "status": 200,
+    "viewportWidth": 390,
+    "documentWidth": 390,
+    "horizontalOverflow": false,
+    "theme": "light",
+    "heading": "给知识，一个自己的位置。",
+    "alerts": [],
+    "bodyText": "跳到主要内容\n知衡.\n今日概览\n我的知识库\n我的空间\n我的知识库\n\nYOUR PERSONAL KNOWLEDGE LIBRARY\n\n给知识，一个自己的位置。\n\n从一个领域开始，慢慢长出属于你的知识地图。\n\n个人知识空间\n新建领域\n我的领域\n00\n\n还没有领域。给你的好奇心留个位置。\n\n+\nSTEP 01 / 03\n从一个感兴趣的领域开始\n\n编程、摄影，或最近想读懂的任何事。先给它起个名字，再慢慢填满。\n\n创建第一个领域\n领域\n主题\n知识点\n每一点积累，都算数。\n慢慢来，知识会生长。\nMADE FOR YOUR CURIOUS MIND",
+    "visibleButtons": [
+      {
+        "label": "切换到深色模式",
+        "disabled": false
+      },
+      {
+        "label": "新建领域",
+        "disabled": false
+      },
+      {
+        "label": "创建第一个领域",
+        "disabled": false
+      }
+    ],
+    "errors": [],
+    "failedRequests": [],
+    "apiResponses": [
+      {
+        "url": "http://localhost:8001/api/v1/topics",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/knowledge-points",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/categories",
+        "status": 200
+      }
+    ],
+    "blockedWrites": []
+  },
+  {
+    "name": "mobile-dark-dashboard",
+    "status": 200,
+    "viewportWidth": 390,
+    "documentWidth": 390,
+    "horizontalOverflow": false,
+    "theme": "dark",
+    "heading": "今天，也有新的收获。",
+    "alerts": [],
+    "bodyText": "跳到主要内容\n知衡.\n今日概览\n我的知识库\n我的空间\n今日概览\n\nA LITTLE BETTER, EVERY DAY\n\n今天，也有新的收获。\n\n留住灵感，连接知识。让每一次学习都有迹可循。\n\n新建领域\n一点一滴，积累成自己的底气\n把学过的，\n变成自己的。\n\n不止收藏，更要真正掌握。\n从整理一个小知识点开始。\n\n整理我的知识\nKEEP GROWING\n探索的领域\n00\n串联的主题\n00\n积累的知识点\n00\n我的知识版图\n\n让好奇心有方向，让知识有连接。\n\n进入知识库\n✳\n这里，留给你的无限可能。\n\n代码、设计、语言，或任何让你眼睛发亮的事。\n\n创建第一个领域\n你的下一次「原来如此」，从这里开始。\n从这里，开始生长\n\n一棵知识树，只需要三小步。\n\n01\n圈定一个领域\n\n从你正在学的、感兴趣的开始。\n\n02\n拆成几个小主题\n\n把大的方向，变成清晰的线索。\n\n03\n留下一个知识点\n\n用自己的话，记下新的理解。\n\nLESS, BUT BETTER.\n\n不必一次整理所有知识。\n今天的一小步，就很好。\n\n慢慢来，知识会生长。\nMADE FOR YOUR CURIOUS MIND",
+    "visibleButtons": [
+      {
+        "label": "切换到浅色模式",
+        "disabled": false
+      }
+    ],
+    "errors": [],
+    "failedRequests": [],
+    "apiResponses": [
+      {
+        "url": "http://localhost:8001/api/v1/topics",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/knowledge-points",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/categories",
+        "status": 200
+      }
+    ],
+    "blockedWrites": []
+  },
+  {
+    "name": "mobile-dark-knowledge",
+    "status": 200,
+    "viewportWidth": 390,
+    "documentWidth": 390,
+    "horizontalOverflow": false,
+    "theme": "dark",
+    "heading": "给知识，一个自己的位置。",
+    "alerts": [],
+    "bodyText": "跳到主要内容\n知衡.\n今日概览\n我的知识库\n我的空间\n我的知识库\n\nYOUR PERSONAL KNOWLEDGE LIBRARY\n\n给知识，一个自己的位置。\n\n从一个领域开始，慢慢长出属于你的知识地图。\n\n个人知识空间\n新建领域\n我的领域\n00\n\n还没有领域。给你的好奇心留个位置。\n\n+\nSTEP 01 / 03\n从一个感兴趣的领域开始\n\n编程、摄影，或最近想读懂的任何事。先给它起个名字，再慢慢填满。\n\n创建第一个领域\n领域\n主题\n知识点\n每一点积累，都算数。\n慢慢来，知识会生长。\nMADE FOR YOUR CURIOUS MIND",
+    "visibleButtons": [
+      {
+        "label": "切换到浅色模式",
+        "disabled": false
+      },
+      {
+        "label": "新建领域",
+        "disabled": false
+      },
+      {
+        "label": "创建第一个领域",
+        "disabled": false
+      }
+    ],
+    "errors": [],
+    "failedRequests": [],
+    "apiResponses": [
+      {
+        "url": "http://localhost:8001/api/v1/knowledge-points",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/topics",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8001/api/v1/categories",
+        "status": 200
+      }
+    ],
+    "blockedWrites": []
+  }
+]

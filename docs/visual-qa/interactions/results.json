@@ -1,0 +1,379 @@
+[
+  {
+    "device": "desktop",
+    "steps": [
+      {
+        "name": "dashboard header create link opens category editor; knowledge toolbar reopens it",
+        "passed": true
+      },
+      {
+        "name": "create category selects new hierarchy",
+        "passed": true
+      },
+      {
+        "name": "create topic and two points with and without notes",
+        "passed": true
+      },
+      {
+        "name": "search, clear, notes filter and empty result recovery",
+        "passed": true
+      },
+      {
+        "name": "edit point updates name and notes",
+        "passed": true
+      },
+      {
+        "name": "duplicate API error keeps entered draft",
+        "passed": true
+      },
+      {
+        "name": "cancel delete preserves item; accept delete removes only selected item",
+        "passed": true
+      },
+      {
+        "name": "new topic and category selection isolate knowledge points",
+        "passed": true
+      },
+      {
+        "name": "theme toggles and persists reload without hydration errors",
+        "passed": true
+      },
+      {
+        "name": "seed sample fixture hierarchy and capture populated states",
+        "passed": true
+      },
+      {
+        "name": "recent point link selects second topic and focuses requested knowledge point",
+        "passed": true
+      },
+      {
+        "name": "initial knowledge API 503 shows unavailable state then retry restores data",
+        "passed": true
+      },
+      {
+        "name": "dashboard API 503 reconnect restores populated statistics",
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "expectedErrors": [
+      "Failed to load resource: the server responded with a status of 409 (Conflict)",
+      "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    ],
+    "interceptedWrites": [
+      {
+        "method": "POST",
+        "kind": "categories",
+        "id": null,
+        "payload": {
+          "name": "编程",
+          "description": "用代码让想法落地"
+        }
+      },
+      {
+        "method": "POST",
+        "kind": "topics",
+        "id": null,
+        "payload": {
+          "category_id": 1,
+          "name": "Web 基础",
+          "description": "从浏览器开始理解互联网"
+        }
+      },
+      {
+        "method": "POST",
+        "kind": "knowledge-points",
+        "id": null,
+        "payload": {
+          "topic_id": 2,
+          "name": "语义化 HTML",
+          "description": "使用合适的标签表达内容的意义"
+        }
+      },
+      {
+        "method": "POST",
+        "kind": "knowledge-points",
+        "id": null,
+        "payload": {
+          "topic_id": 2,
+          "name": "CSS 盒模型",
+          "description": ""
+        }
+      },
+      {
+        "method": "PATCH",
+        "kind": "knowledge-points",
+        "id": 3,
+        "payload": {
+          "topic_id": 2,
+          "name": "语义化 HTML 与可访问性",
+          "description": "用结构表达含义，使用地标和标签。"
+        }
+      },
+      {
+        "method": "POST",
+        "kind": "knowledge-points",
+        "id": null,
+        "payload": {
+          "topic_id": 2,
+          "name": "CSS 盒模型",
+          "description": "失败后应保留的笔记草稿"
+        }
+      },
+      {
+        "method": "DELETE",
+        "kind": "knowledge-points",
+        "id": 4
+      },
+      {
+        "method": "POST",
+        "kind": "topics",
+        "id": null,
+        "payload": {
+          "category_id": 1,
+          "name": "JavaScript",
+          "description": ""
+        }
+      },
+      {
+        "method": "POST",
+        "kind": "knowledge-points",
+        "id": null,
+        "payload": {
+          "topic_id": 5,
+          "name": "闭包",
+          "description": "函数记住定义时的作用域"
+        }
+      },
+      {
+        "method": "POST",
+        "kind": "categories",
+        "id": null,
+        "payload": {
+          "name": "摄影",
+          "description": "留意生活里的光"
+        }
+      },
+      {
+        "method": "POST",
+        "kind": "topics",
+        "id": null,
+        "payload": {
+          "category_id": 7,
+          "name": "构图",
+          "description": ""
+        }
+      },
+      {
+        "method": "POST",
+        "kind": "knowledge-points",
+        "id": null,
+        "payload": {
+          "topic_id": 8,
+          "name": "三分法",
+          "description": "让主体沿九宫格交点分布"
+        }
+      }
+    ],
+    "blockedWrites": []
+  },
+  {
+    "device": "mobile",
+    "steps": [
+      {
+        "name": "dashboard header create link opens category editor; knowledge toolbar reopens it",
+        "passed": true
+      },
+      {
+        "name": "create category selects new hierarchy",
+        "passed": true
+      },
+      {
+        "name": "create topic and two points with and without notes",
+        "passed": true
+      },
+      {
+        "name": "search, clear, notes filter and empty result recovery",
+        "passed": true
+      },
+      {
+        "name": "edit point updates name and notes",
+        "passed": true
+      },
+      {
+        "name": "duplicate API error keeps entered draft",
+        "passed": true
+      },
+      {
+        "name": "cancel delete preserves item; accept delete removes only selected item",
+        "passed": true
+      },
+      {
+        "name": "new topic and category selection isolate knowledge points",
+        "passed": true
+      },
+      {
+        "name": "theme toggles and persists reload without hydration errors",
+        "passed": true
+      },
+      {
+        "name": "seed sample fixture hierarchy and capture populated states",
+        "passed": true
+      },
+      {
+        "name": "recent point link selects second topic and focuses requested knowledge point",
+        "passed": true
+      },
+      {
+        "name": "initial knowledge API 503 shows unavailable state then retry restores data",
+        "passed": true
+      },
+      {
+        "name": "dashboard API 503 reconnect restores populated statistics",
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "expectedErrors": [
+      "Failed to load resource: the server responded with a status of 409 (Conflict)",
+      "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    ],
+    "interceptedWrites": [
+      {
+        "method": "POST",
+        "kind": "categories",
+        "id": null,
+        "payload": {
+          "name": "编程",
+          "description": "用代码让想法落地"
+        }
+      },
+      {
+        "method": "POST",
+        "kind": "topics",
+        "id": null,
+        "payload": {
+          "category_id": 1,
+          "name": "Web 基础",
+          "description": "从浏览器开始理解互联网"
+        }
+      },
+      {
+        "method": "POST",
+        "kind": "knowledge-points",
+        "id": null,
+        "payload": {
+          "topic_id": 2,
+          "name": "语义化 HTML",
+          "description": "使用合适的标签表达内容的意义"
+        }
+      },
+      {
+        "method": "POST",
+        "kind": "knowledge-points",
+        "id": null,
+        "payload": {
+          "topic_id": 2,
+          "name": "CSS 盒模型",
+          "description": ""
+        }
+      },
+      {
+        "method": "PATCH",
+        "kind": "knowledge-points",
+        "id": 3,
+        "payload": {
+          "topic_id": 2,
+          "name": "语义化 HTML 与可访问性",
+          "description": "用结构表达含义，使用地标和标签。"
+        }
+      },
+      {
+        "method": "POST",
+        "kind": "knowledge-points",
+        "id": null,
+        "payload": {
+          "topic_id": 2,
+          "name": "CSS 盒模型",
+          "description": "失败后应保留的笔记草稿"
+        }
+      },
+      {
+        "method": "DELETE",
+        "kind": "knowledge-points",
+        "id": 4
+      },
+      {
+        "method": "POST",
+        "kind": "topics",
+        "id": null,
+        "payload": {
+          "category_id": 1,
+          "name": "JavaScript",
+          "description": ""
+        }
+      },
+      {
+        "method": "POST",
+        "kind": "knowledge-points",
+        "id": null,
+        "payload": {
+          "topic_id": 5,
+          "name": "闭包",
+          "description": "函数记住定义时的作用域"
+        }
+      },
+      {
+        "method": "POST",
+        "kind": "categories",
+        "id": null,
+        "payload": {
+          "name": "摄影",
+          "description": "留意生活里的光"
+        }
+      },
+      {
+        "method": "POST",
+        "kind": "topics",
+        "id": null,
+        "payload": {
+          "category_id": 7,
+          "name": "构图",
+          "description": ""
+        }
+      },
+      {
+        "method": "POST",
+        "kind": "knowledge-points",
+        "id": null,
+        "payload": {
+          "topic_id": 8,
+          "name": "三分法",
+          "description": "让主体沿九宫格交点分布"
+        }
+      }
+    ],
+    "blockedWrites": []
+  },
+  {
+    "device": "tablet",
+    "steps": [
+      {
+        "name": "768px main navigation remains visible, usable and in viewport",
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "blockedWrites": []
+  }
+]

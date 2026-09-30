@@ -1,0 +1,34 @@
+[
+  {
+    "check": "preview-cancel-manual-apply-sync-protect-stale-regenerate-restore",
+    "passed": true
+  },
+  {
+    "check": "conflict-preserves-input-crawl-failure-manual-fallback-budget-warning",
+    "passed": true
+  },
+  {
+    "check": "1440-light-preview-editor",
+    "passed": true
+  },
+  {
+    "check": "1440-dark-preview-editor",
+    "passed": true
+  },
+  {
+    "check": "390-light-preview-editor",
+    "passed": true
+  },
+  {
+    "check": "390-dark-preview-editor",
+    "passed": true
+  },
+  {
+    "check": "320-light-preview-editor",
+    "passed": true
+  },
+  {
+    "check": "320-dark-preview-editor",
+    "passed": true
+  }
+]

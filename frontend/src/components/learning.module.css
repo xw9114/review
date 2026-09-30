@@ -1,0 +1,63 @@
+.stack { display: grid; gap: 22px; min-width: 0; }
+.panel { border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: clamp(20px, 3vw, 38px); min-width: 0; }
+.panel h2 { margin: 12px 0 22px; font-size: 23px; line-height: 1.5; }
+.panel h3 { margin: 28px 0 14px; font-size: 16px; }
+.toolbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.toolbar > a { color: var(--brand); font-size: 12px; }
+.toolbar h2 { margin: 0 0 12px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.eyebrow { color: var(--muted); font-size: 11px; letter-spacing: .08em; }
+.muted { color: var(--muted); line-height: 1.9; }
+.error, .notice { margin: 0; border: 1px solid var(--line); padding: 16px 20px; border-radius: 8px; line-height: 1.7; }
+.error { color: var(--danger); }
+.notice { color: var(--brand); background: var(--surface-soft); }
+.form, .questionEditor { display: grid; gap: 20px; }
+.form { margin-top: 20px; }
+.form label, .questionEditor label, .answerLabel { display: grid; gap: 9px; color: var(--muted); font-size: 12px; }
+.form input, .form select, .form textarea, .questionEditor input, .questionEditor textarea, .answerLabel textarea { width: 100%; min-width: 0; padding: 12px 14px; border: 1px solid var(--line); border-radius: 7px; background: var(--background); color: var(--foreground); font: inherit; font-size: 14px; line-height: 1.7; }
+.form textarea, .questionEditor textarea, .answerLabel textarea { resize: vertical; }
+.questionEditor { margin: 20px 0; padding: 24px 0; border-top: 1px solid var(--line); }
+.question { margin: 16px 0; border-top: 1px solid var(--line); padding-top: 16px; }
+.question summary { cursor: pointer; line-height: 1.8; font-weight: 500; overflow-wrap: anywhere; }
+.question summary span { margin-right: 15px; color: var(--brand); }
+.question[open] summary { margin-bottom: 20px; }
+.keyPoints { padding-left: 24px; }
+.keyPoints li { padding-left: 8px; margin-bottom: 12px; }
+.textButton { border: 0; background: none; color: var(--brand); padding: 6px 0; font-size: 12px; justify-self: start; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.stat { padding: 22px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.stat strong { display: block; font-size: 32px; margin-bottom: 8px; font-weight: 500; }
+.stat span { color: var(--muted); font-size: 12px; }
+.progress { display: block; width: 100%; height: 5px; margin: 18px 0 26px; accent-color: var(--brand); }
+.questionTitle { font-size: clamp(18px, 1.7vw, 23px); line-height: 1.8; margin: 16px 0 26px; }
+.questionTitle > article > div { font-size: inherit; }
+.stack button:disabled { opacity: .55; }
+.answerLabel { margin-bottom: 18px; }
+.standardAnswer { padding: 22px; background: var(--surface-soft); border-radius: 8px; margin: 20px 0; }
+.ratings { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.ratings button { padding: 17px 10px; display: grid; gap: 7px; border: 1px solid var(--line); border-radius: 8px; background: var(--background); color: var(--foreground); }
+.ratings button:hover { border-color: var(--brand); background: var(--surface-soft); }
+.ratings small { color: var(--muted); font-size: 10px; }
+.pointList { list-style: none; padding: 0; margin: 10px 0 0; }
+.pointList li { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+.pointList li:last-child { border-bottom: 0; }
+.pointList li > div { min-width: 0; overflow-wrap: anywhere; }
+.pointList a { text-decoration: none; font-weight: 500; }
+.pointList small { display: block; color: var(--muted); margin-top: 8px; line-height: 1.8; }
+.level { display: inline-block; padding: 3px 8px; border-radius: 20px; border: 1px solid var(--line); color: var(--brand); font-size: 11px; margin-right: 8px; }
+.empty { text-align: center; padding: 28px 10px; }
+.empty p { color: var(--muted); line-height: 1.8; }
+.levelBars { display: flex; align-items: end; gap: 18px; margin: 26px 0; height: 150px; }
+.levelBars > div { flex: 1; display: flex; flex-direction: column; gap: 8px; align-items: center; justify-content: end; height: 100%; color: var(--muted); font-size: 11px; }
+.levelBars i { display: block; width: 100%; max-width: 65px; background: var(--brand-bright); border-radius: 4px; min-height: 4px; }
+@media (max-width: 600px) {
+  .stack { gap: 16px; }
+  .stats { gap: 8px; }
+  .stat { padding: 15px 12px; }
+  .stat strong { font-size: 26px; }
+  .stat span { font-size: 10px; }
+  .ratings { grid-template-columns: repeat(2, 1fr); }
+  .pointList li { align-items: start; gap: 12px; }
+  .pointList button { flex: 0 0 auto; }
+  .panel h2 { font-size: 20px; }
+}

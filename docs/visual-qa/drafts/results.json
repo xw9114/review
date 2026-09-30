@@ -1,0 +1,62 @@
+[
+  {
+    "name": "desktop-light-drafts",
+    "status": 200,
+    "viewportWidth": 1440,
+    "documentWidth": 1440,
+    "horizontalOverflow": false,
+    "heading": "AI 先打草稿，你来定稿。",
+    "selectedTopic": "1",
+    "title": "Adam 优化器的核心机制",
+    "keyPointCount": 3,
+    "quizCount": 2,
+    "approvalAction": true,
+    "activeNavigation": "草稿审核",
+    "errors": []
+  },
+  {
+    "name": "desktop-dark-drafts",
+    "status": 200,
+    "viewportWidth": 1440,
+    "documentWidth": 1440,
+    "horizontalOverflow": false,
+    "heading": "AI 先打草稿，你来定稿。",
+    "selectedTopic": "1",
+    "title": "Adam 优化器的核心机制",
+    "keyPointCount": 3,
+    "quizCount": 2,
+    "approvalAction": true,
+    "activeNavigation": "草稿审核",
+    "errors": []
+  },
+  {
+    "name": "mobile-light-drafts",
+    "status": 200,
+    "viewportWidth": 390,
+    "documentWidth": 390,
+    "horizontalOverflow": false,
+    "heading": "AI 先打草稿，你来定稿。",
+    "selectedTopic": "1",
+    "title": "Adam 优化器的核心机制",
+    "keyPointCount": 3,
+    "quizCount": 2,
+    "approvalAction": true,
+    "activeNavigation": "草稿审核",
+    "errors": []
+  },
+  {
+    "name": "mobile-dark-drafts",
+    "status": 200,
+    "viewportWidth": 390,
+    "documentWidth": 390,
+    "horizontalOverflow": false,
+    "heading": "AI 先打草稿，你来定稿。",
+    "selectedTopic": "1",
+    "title": "Adam 优化器的核心机制",
+    "keyPointCount": 3,
+    "quizCount": 2,
+    "approvalAction": true,
+    "activeNavigation": "草稿审核",
+    "errors": []
+  }
+]

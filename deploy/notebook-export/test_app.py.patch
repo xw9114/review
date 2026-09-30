@@ -1,0 +1,29 @@
+--- tests/test_app.py
++++ tests/test_app.py
+@@ -3,7 +3,7 @@
+ from xml.etree import ElementTree as ET
+ from unittest.mock import patch
+ from werkzeug.security import generate_password_hash
+-os.environ.update(SESSION_SECRET='test-secret-not-for-deployment',ADMIN_PASSWORD_HASH=generate_password_hash('test-password'),COOKIE_SECURE='false',DB_PATH=tempfile.mktemp(suffix='.db'),UPLOAD_DIR=tempfile.mkdtemp(),WX_TOKEN='test-token',WX_OPENID='owner',WX_TEMPLATE_FIELDS='{"title":"title","content":"content","time":"time"}')
++os.environ.update(SESSION_SECRET='test-secret-not-for-deployment',ADMIN_PASSWORD_HASH=generate_password_hash('test-password'),COOKIE_SECURE='false',DB_PATH=tempfile.mktemp(suffix='.db'),UPLOAD_DIR=tempfile.mkdtemp(),WX_TOKEN='test-token',WX_OPENID='owner',WX_TEMPLATE_FIELDS='{"title":"title","content":"content","time":"time"}',NOTEBOOK_EXPORT_TOKEN='export-token')
+ import app
+ import worker
+ 
+@@ -36,7 +36,17 @@
+         self.assertEqual(self.client.patch(f'/api/tasks/{ident}',json={'done':True},headers=self.header).status_code,200)
+         self.assertEqual(self.client.get('/api/tasks').json['tasks'][0]['done'],1)
+         self.client.delete(f'/api/tasks/{ident}',headers=self.header)
+         self.assertEqual(self.client.get('/api/tasks').json['tasks'],[])
++    def test_internal_note_export(self):
++        self.login()
++        self.client.post('/api/tasks',json={'title':'私人笔记','note':'只导出笔记正文','kind':'note'},headers=self.header)
++        self.client.post('/api/tasks',json={'title':'待办不导出','kind':'task'},headers=self.header)
++        self.assertEqual(self.client.get('/internal/v1/entries?kind=note').status_code,401)
++        response=self.client.get('/internal/v1/entries?kind=note',headers={'Authorization':'Bearer export-token'})
++        self.assertEqual(response.status_code,200)
++        self.assertEqual(response.json['total'],1)
++        self.assertEqual(response.json['items'][0]['title'],'私人笔记')
++        self.assertNotIn('done',response.json['items'][0])
+     def test_image_upload_and_delete(self):
+         self.login()
+         ident=self.client.post('/api/tasks',json={'title':'图片笔记','kind':'note'},headers=self.header).json['id']

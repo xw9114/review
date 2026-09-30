@@ -100,7 +100,9 @@ def test_embedding_batch_scores_and_reuses_topic_vector(client: TestClient) -> N
         "passed": 2,
         "threshold": 0.6,
     }
-    assert [len(call) for call in connector.calls] == [2, 1]
+    # One batch call covering the uncached topic plus both uncached documents, instead of one
+    # call per document.
+    assert [len(call) for call in connector.calls] == [3]
 
     documents = client.get("/api/v1/source-documents?status=pending").json()
     assert all(document["processing_status"] == "scored" for document in documents)
@@ -112,7 +114,29 @@ def test_embedding_batch_scores_and_reuses_topic_vector(client: TestClient) -> N
     second_response = client.post("/api/v1/source-documents/score-pending")
     assert second_response.status_code == 200
     assert second_response.json()["requested"] == 0
-    assert [len(call) for call in connector.calls] == [2, 1]
+    assert [len(call) for call in connector.calls] == [3]
+
+
+def test_embedding_batch_call_count_does_not_grow_with_document_count(client: TestClient) -> None:
+    connector = FakeEmbeddingConnector()
+    entries = [
+        NotebookEntry(
+            external_id=str(index),
+            title=f"Adam 优化器实践 {index}",
+            content="Adam 是常用的深度学习优化器。",
+            created_at=datetime(2026, 9, 24, index, tzinfo=UTC),
+        )
+        for index in range(5)
+    ]
+    configure_scoring(client, connector, entries)
+    create_structure_and_sources(client, count=5)
+
+    response = client.post("/api/v1/source-documents/score-pending")
+    assert response.status_code == 200
+    assert response.json()["scored"] == 5
+    # Still exactly one HTTP call (1 topic + 5 documents = 6 texts), not one call per document.
+    assert connector.calls == [connector.calls[0]]
+    assert len(connector.calls[0]) == 6
 
 
 def test_unconfigured_embedding_uses_keyword_fallback(client: TestClient) -> None:

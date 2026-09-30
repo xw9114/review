@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 
 from app.core.errors import UpstreamInvalidResponseError
-from app.integrations.llm import get_llm_connector
+from app.integrations.llm import GENERATION_SLOT, get_llm_connector
 from app.main import app
 from app.schemas.analysis import ErrorAnalysisContent, QuestionVariantsContent
 from app.schemas.knowledge_draft import QuizItem
@@ -186,6 +186,34 @@ def test_question_variants_generate_approve_reject_and_regenerate(client: TestCl
         f"/api/v1/analysis/knowledge-points/{point['id']}/question-variants"
     ).json()
     assert len(all_variants) == 3  # 1 approved + 1 rejected + 1 new pending
+
+
+def test_generation_slot_is_shared_with_knowledge_drafts(client: TestClient) -> None:
+    # A single process-wide slot bounds every model call (drafts, error analysis, question
+    # variants) to one in flight at a time, per docs/api-design.md. Simulate a draft generation
+    # already holding it and confirm analysis generation is blocked by the *same* semaphore
+    # rather than one private to app/services/analysis.py.
+    connector = FakeAnalysisConnector()
+    configure(connector)
+    point = point_with_quiz(client)
+    session = client.post("/api/v1/reviews/sessions", json={}).json()
+    finish_item(client, session["items"][0], "again")
+    finish_item(client, session["items"][1], "good")
+
+    assert GENERATION_SLOT.acquire(blocking=False)
+    try:
+        blocked = client.post(
+            f"/api/v1/analysis/knowledge-points/{point['id']}/error-analysis/generate"
+        )
+        assert blocked.status_code == 409
+        assert "正在生成" in blocked.json()["error"]["message"]
+    finally:
+        GENERATION_SLOT.release()
+
+    unblocked = client.post(
+        f"/api/v1/analysis/knowledge-points/{point['id']}/error-analysis/generate"
+    )
+    assert unblocked.status_code == 200
 
 
 def test_analysis_routes_404_for_unknown_point(client: TestClient) -> None:

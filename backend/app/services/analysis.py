@@ -1,5 +1,4 @@
 from datetime import UTC, datetime
-from threading import BoundedSemaphore
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session, joinedload
@@ -7,6 +6,7 @@ from sqlalchemy.orm import Session, joinedload
 from app.core.errors import ConflictError, NotFoundError
 from app.integrations.llm import (
     ERROR_ANALYSIS_PROMPT_VERSION,
+    GENERATION_SLOT,
     QUESTION_VARIANTS_PROMPT_VERSION,
     LlmConnector,
 )
@@ -20,8 +20,6 @@ from app.schemas.analysis import (
     VariantStatus,
     WeakPointRead,
 )
-
-_generation_slot = BoundedSemaphore(1)
 
 # A point counts as "weak" once recent answers keep landing on "again", or it has stayed
 # stuck at the lowest levels despite repeated review — both plain counter thresholds, no model.
@@ -137,12 +135,12 @@ def get_error_analysis(db: Session, point_id: int) -> ErrorAnalysisRead:
 
 
 def generate_error_analysis(db: Session, point_id: int, connector: LlmConnector) -> ErrorAnalysisRead:
-    if not _generation_slot.acquire(blocking=False):
+    if not GENERATION_SLOT.acquire(blocking=False):
         raise ConflictError("已有分析正在生成，请稍后再试。")
     try:
         return _generate_error_analysis(db, point_id, connector)
     finally:
-        _generation_slot.release()
+        GENERATION_SLOT.release()
 
 
 def _generate_error_analysis(db: Session, point_id: int, connector: LlmConnector) -> ErrorAnalysisRead:
@@ -187,12 +185,12 @@ def list_question_variants(
 def generate_question_variants(
     db: Session, point_id: int, connector: LlmConnector, count: int
 ) -> list[QuestionVariantRead]:
-    if not _generation_slot.acquire(blocking=False):
+    if not GENERATION_SLOT.acquire(blocking=False):
         raise ConflictError("已有变式题正在生成，请稍后再试。")
     try:
         return _generate_question_variants(db, point_id, connector, count)
     finally:
-        _generation_slot.release()
+        GENERATION_SLOT.release()
 
 
 def _generate_question_variants(

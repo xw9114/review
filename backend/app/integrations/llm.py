@@ -1,4 +1,5 @@
 import json
+from threading import BoundedSemaphore
 
 import httpx
 from pydantic import ValidationError
@@ -16,6 +17,12 @@ PROMPT_VERSION = "draft-v2"
 ERROR_ANALYSIS_PROMPT_VERSION = "error-analysis-v1"
 QUESTION_VARIANTS_PROMPT_VERSION = "question-variants-v1"
 OPENAI_USER_AGENT = "OpenAI/Python 2.6.1"
+
+# Shared across every generation entry point (drafts, error analysis, question variants) so at
+# most one model call is ever in flight per process, matching docs/api-design.md's documented
+# invariant. Two independent per-module semaphores would let a draft generation and an analysis
+# generation run concurrently, silently breaking that guarantee.
+GENERATION_SLOT = BoundedSemaphore(1)
 
 
 class LlmConnector:

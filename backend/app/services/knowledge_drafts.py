@@ -1,5 +1,4 @@
 from datetime import UTC, datetime
-from threading import BoundedSemaphore
 from typing import cast
 
 from slugify import slugify
@@ -8,7 +7,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session, joinedload
 
 from app.core.errors import ConflictError, NotFoundError
-from app.integrations.llm import PROMPT_VERSION, LlmConnector
+from app.integrations.llm import GENERATION_SLOT, PROMPT_VERSION, LlmConnector
 from app.models import KnowledgeDraft, KnowledgePoint, KnowledgePointSource, SourceDocument, Topic
 from app.schemas.knowledge_draft import (
     Difficulty,
@@ -18,8 +17,6 @@ from app.schemas.knowledge_draft import (
     QuizItem,
 )
 from app.services.source_ingestion import NOTEBOOK_PROVIDER, get_source_document
-
-_generation_slot = BoundedSemaphore(1)
 
 
 def _source_name(source: SourceDocument) -> str:
@@ -100,14 +97,14 @@ def generate_draft(
     regenerate: bool = False,
     expected_revision: int | None = None,
 ) -> KnowledgeDraftRead:
-    if not _generation_slot.acquire(blocking=False):
+    if not GENERATION_SLOT.acquire(blocking=False):
         raise ConflictError("已有草稿正在生成，请稍后再试。")
     try:
         return _generate_draft(db, source_document_id=source_document_id, topic_id=topic_id,
                                connector=connector, regenerate=regenerate,
                                expected_revision=expected_revision)
     finally:
-        _generation_slot.release()
+        GENERATION_SLOT.release()
 
 
 def _generate_draft(
